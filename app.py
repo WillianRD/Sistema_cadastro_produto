@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, url_for
 from validarProduto import checkSize
+from validarCategoria import checkCategoria
 
 app = Flask(__name__)
 
@@ -17,8 +18,9 @@ def index():
         vencimento: str = request.form['vencimento']
         caracteristicas: str = request.form['caracteristicas']
         url: str = request.form['url']
-        print(produto)
-        print(checkSize(produto))
+        
+        print(f'Validação Produto: {checkSize(produto)}')
+        print(f'Validação Categoria {checkCategoria(categoria)}')
     
     return render_template('index.html')
 

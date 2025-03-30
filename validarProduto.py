@@ -1,6 +1,5 @@
 def checkSize(produto):
-    
-    if len(produto) < 1:
+    if len(produto) <= 1:
         print("Primeior")
         return False
     
@@ -8,8 +7,6 @@ def checkSize(produto):
         print("Segundo")
         return False
     
-    if len(produto) > 1 and len(produto) < 255:
-        print("Terceiro")
-        return True
+    return True
     
     
