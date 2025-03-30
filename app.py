@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, url_for
+from validarProduto import checkSize
 
 app = Flask(__name__)
+
 
 @app.route("/", methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
-        produto: str = request.form['produto']
+        produto = request.form['produto']
         categoria: str = request.form['categoria']
         descricao: str = request.form['descricao']
         preco: str = request.form['preco']
@@ -15,11 +17,9 @@ def index():
         vencimento: str = request.form['vencimento']
         caracteristicas: str = request.form['caracteristicas']
         url: str = request.form['url']
-        
-        print(f'Produto:{produto}')
-        print(f'Categoria{categoria}Descrição{descricao}')
-        print(f'Preço{preco}Quantidade Estoque{quantidadeEstoque}Fornecedor{fornecedor}')
-        print(f'Fabricação{fabricacao}Vencimento{vencimento}Caracteristicas{caracteristicas}URL:{url}')
+        print(produto)
+        print(checkSize(produto))
+    
     return render_template('index.html')
 
 
