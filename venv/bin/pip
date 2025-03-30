@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/will/Documentos/Python/Dona Leide/venv/bin/python3" "$0" "$@"
-' '''
+#!/home/will/dev-experiments-Flask/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
