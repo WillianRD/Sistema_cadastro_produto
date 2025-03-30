@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, url_for
 from validarProduto import checkSize,checkCategory
 from validarProduto import checkPrice, checkDesc, checkSizeEstoque,checkFornecedor
 from validarProduto import caracteres, url
-from models import mostrarDados, inserirDados
+from models import updateDados, ReadDados
 
 app = Flask(__name__)
 
@@ -19,9 +19,13 @@ def index():
         vencimento= request.form['vencimento']
         caracteristicas= request.form['caracteristicas']
         url_link_page = request.form['url_link_page']
-    
-        inserirDados(produto,categoria,preco,descricao,qtd,fabricacao,vencimento,caracteristicas,url_link_page)
-        print(mostrarDados)
+        updateDados(produto,categoria,preco,descricao,qtd,fabricacao,vencimento,caracteristicas,url_link_page)
     return render_template('index.html')
 
+@app.route("/produtos")
+
+def produto():
+    listaDeProdutos = ReadDados()
+    
+    return render_template('produto.html',lista=listaDeProdutos)
 

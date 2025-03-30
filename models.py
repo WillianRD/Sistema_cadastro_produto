@@ -45,21 +45,34 @@ def ReadDados():
     for exibir in cursor.fetchall():
         print(exibir)
         
-#inserirDados('Smartphone', 'Tecnologia', 'Celular top de linha', 2999.99, 10, '2024-01-01', '2026-01-01', '128GB, Tela AMOLED', 'https://exemplo.com')     
 
-def deleteProduto(produto_id):
+def deleteProduto():
     con = sqlite3.connect('banco_de_cadastro.db')
     cursor = con.cursor()
     
-    exe = "DELETE FROM produto WHERE prod_id = ?"
+    while(True):
+        print('Você deseja deletar qual campo?\n1.ID:\n2.Nome do Produto\n3.Quantidade do Estoque')
     
-    try:
-        cursor.execute(exe, (produto_id,))
-        con.commit()
-        print("✅ Produto deletado com sucesso!")
-    except sqlite3.Error as e:
-        print(f"❌ Erro ao deletar produto: {e}")
-    finally:
-        cursor.close()
-        con.close()
-
+        campo  =int(input('Digite um digito para deletar um campo'))
+    
+        print("Mostrando todos os dados da tabela Produto: ",ReadDados())
+        id = int(input('Digite o ID do campo'))
+    
+        if campo == 1:
+            sql = f"DELETE FROM produto WHERE prod_id = {id}"
+            print(f"ID {id} foi deletado com sucesso")
+            break
+        
+        if campo == 2:
+            sql = f"DELETE FROM produto WHERE prod_name = {id}" 
+            print(f"Produto nome: {id} foi deletado com sucesso")  
+            break
+        
+        if campo == 3:
+            sql   = f"DELETE FROM produto WHERE prod_qtd_estoque = {id} " 
+            print(f"Produto nome: {id} foi deletado com sucesso")   
+            break
+        
+ReadDados()        
+# updateDados('Smartphone', 'Tecnologia', 'Celular top de linha', 2999.99, 10, '2024-01-01', '2026-01-01', '128GB, Tela AMOLED', 'https://exemplo.com')     
+deleteProduto()
