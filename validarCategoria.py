@@ -1,6 +1,8 @@
 def checkCategoria(categoria):
     if categoria == 0:
         return False
+    if categoria == 'Selecione uma opção':
+        return False
     
     if categoria == 'Alimentos':
         return True
