@@ -74,7 +74,7 @@ def caracteres(caracteres):
 
 def url(url_link):
     if len(url_link) == 0: return 'Link vazio', False
-    if len(url_link) > 5 and len(url_link) < 3000: return True
-    if len(url_link) > 4000: return 'Link muito grande', False
+    if len(url_link) > 5 and len(url_link) < 5000: return True
+    if len(url_link) > 5000: return 'Link muito grande', False
     
     return True  

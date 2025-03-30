@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, url_for
 from validarProduto import checkSize,checkCategory
 from validarProduto import checkPrice, checkDesc, checkSizeEstoque,checkFornecedor
 from validarProduto import caracteres, url
+from models import createBanco
+
+
+from models import createBanco
 app = Flask(__name__)
 
 @app.route("/", methods=['POST', 'GET'])
@@ -17,8 +21,7 @@ def index():
         vencimento= request.form['vencimento']
         caracteristicas= request.form['caracteristicas']
         url_link_page = request.form['url_link_page']
-        
-        
+           
         print(f'Validação Produto Nome: {checkSize(produto)}')
         print(f'Validação Categoria Produto: {checkCategory(categoria)}')
         print(f'Validação Preço Produto: {checkPrice(preco)}')
@@ -28,4 +31,5 @@ def index():
         print(f'Validação Caracteres Produto: {caracteres(caracteristicas)} ')
         print(f'Validação URL Produto: {url(url_link_page)}')
     return render_template('index.html')
+
 

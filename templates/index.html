@@ -3,139 +3,113 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Projeto</title>   
+    <title>Cadastro de Produto</title>   
  
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     
-
+    <style>
+      body {
+        background-color: #ffffff;
+        font-family: 'Noto Sans', sans-serif;
+        background-image: url(../static/img/8138249-simples-branco-ondulado-forma-fundo-em-um-estilo-minimalista-dinamico-onda-torcida-ilustracao-decorativa-vetor.jpg);
+        background-position: center;
+      }
+      .container {
+        max-width: 600px;
+        background: rgb(255, 251, 251);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(254, 253, 253, 0.1);
+        margin-top: 50px;
+      }
+      .form-label {
+        font-weight: bold;
+      }
+      .btn-primary {
+        width: 100%;
+        background-color: #28a745;
+        border: none;
+      }
+      .btn-primary:hover {
+        background-color: #218838;
+      }
+    </style>
   </head>
 
   <body>
-    <style>
-      *{
-        background-image: url(../static/img/);
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      .mb-3{
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Times New Roman', Times, serif;
-        border-radius: 10px;
-        background-color: white;
-      }
-
-      .btn-btn-primary{
-        padding: 10;
-        margin: 10;
-        border-radius: 10px;
-        background-color: greenyellow;
+    <div class="container">
+      <h2 class="text-center mb-4">Cadastro de Produto</h2>
+      <form method="POST">
         
-      }
-    </style>
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <a class="navbar-brand" href="#">Produto</a>
-
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-              </li>
-            </ul>
-          </div>
+        <div class="mb-3">
+          <label class="form-label">Produto</label>
+          <input name="produto" type="text" class="form-control" placeholder="Nome do Produto" required>
         </div>
-      </nav>
-
-      <div class="container text-center">
-        <div class="row">
-          <div class="col">
-            <h1 style="color: white;">Cadastro de Produto</h1>
-            <h2 style="color: white;"> Formulário </h2>
-
-            <br>
- 
-            <form method="POST">
-             
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Produto</label>
-                <input name="produto" placeholder="Produto" required="Elemento obrigátorio" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              </div>
-              
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Categoria</label>
-                <br>
-                <select name="categoria">
-                  <option value="Selecione uma opção">Selecione uma opção</option>
-                  <option value="Alimentos">Alimentos</option>
-                  <option value="Bebidas">Bebidas</option>
-                  <option value="Roupas">Roupas</option>
-                  <option value="Tecnologia">Tecnologia</option>
-                  <option value="Saúde">Saúde</option>
-                </select>
-                                
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleInputPassword2" class="form-label">Descrição</label>
-                <input name="descricao" placeholder="Descrição" type="text" class="form-control" id="descricao">
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Preço</label>
-                <input name="preco" placeholder="Preço" type="text" class="form-control" id="preco">
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Quantidade no Estoque</label>
-                <input name="estoque" placeholder="Quantidade Estoque" type="number" class="form-control" id="estoque">
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Fornecedor</label>
-                <input name="fornecedor" placeholder="Fornecedor" type="text" class="form-control" id="fornecedor">
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Data de Fabricação</label>
-                <input name="fabricacao" placeholder="Data de Fabricação" type="date" class="form-control" id="fabricacao">
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Data de Vencimento</label>
-                <input name="vencimento" placeholder="Data Vencimento" type="date" class="form-control" id="vencimento">
-              </div>
-              
-              <div class="mb-3"> 
-                <label for="exampleInputPassword1" class="form-label">Caracteristicas</label>
-                <input name="caracteristicas" placeholder="Caracteristicas" type="text" class="form-control" id="caracteristicas">
-              </div>
-
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Imagem</label>
-                <input name="url_link_page" placeholder="Url" type="url" class="form-control" id="url_link_page">
-              </div> 
-
-              <div class="mb-3-central" style="text-align: center;">
-                <button class="btn-btn-primary" type="submit">Enviar Dados</button>
-            </div>
-            
-            </form>
-          </div>
+        
+        <div class="mb-3">
+          <label class="form-label">Categoria</label>
+          <select name="categoria" class="form-select">
+            <option selected disabled>Selecione uma opção</option>
+            <option value="Alimentos">Alimentos</option>
+            <option value="Bebidas">Bebidas</option>
+            <option value="Roupas">Roupas</option>
+            <option value="Tecnologia">Tecnologia</option>
+            <option value="Saúde">Saúde</option>
+            <option value="Eletrodomestico">Eletrodomestico</option>
+            <option value="Casa e decoração">Casa e decoração</option>
+            <option value="Decoração">Decoração</option>
+            <option value="Brinquedo">Brinquedo</option>
+            <option value="Produto Fisico">Produto Fisico</option>
+            <option value="Produto Digital">Produto Digital</option>
+          </select>
         </div>
-      </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+
+        <div class="mb-3">
+          <label class="form-label">Descrição</label>
+          <textarea name="descricao" class="form-control" rows="3" placeholder="Descrição do produto"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Preço</label>
+          <input name="preco" type="number" step="0.01" class="form-control" placeholder="Preço">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Quantidade no Estoque</label>
+          <input name="estoque" type="number" class="form-control" placeholder="Quantidade disponível">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Fornecedor</label>
+          <input name="fornecedor" type="text" class="form-control" placeholder="Nome do fornecedor">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Data de Fabricação</label>
+          <input name="fabricacao" type="date" class="form-control">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Data de Vencimento</label>
+          <input name="vencimento" type="date" class="form-control">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Características</label>
+          <input name="caracteristicas" type="text" class="form-control" placeholder="Características do produto">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Imagem (URL)</label>
+          <input name="url_link_page" type="url" class="form-control" placeholder="Link da imagem">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar Dados</button>
+      </form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
