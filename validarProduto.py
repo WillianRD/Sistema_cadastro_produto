@@ -14,9 +14,14 @@ def checkCategory(categoria):
     if categoria == 'Selecione uma opcão': return 'Opção invalida', False
     if categoria == 'Alimentos': return True
     if categoria == 'Bebidas': return True
-    if categoria == 'Roupas': return True
-    if categoria == 'Tecnologia': return True 
-    if categoria == 'Saúde': return True
+    if categoria == 'Tecnlógia': return True
+    if categoria == 'Saúde': return True 
+    if categoria == 'Eletrodomestico': return True
+    if categoria == 'Casa e Decoração': return True
+    if categoria == 'Decoração': return True
+    if categoria == 'Brinquedo': return True
+    if categoria == 'Produto Fisico': return True
+    if categoria == 'Produto Digital': return True
     
     else:
         return 'O produto deve estar na categoria', False
@@ -39,7 +44,7 @@ def checkDesc(descricao):
     if len(descricao) < 10:
         return 'Descrição muita pequena', False
     
-    if len(descricao) > 255:
+    if len(descricao) > 500:
         return 'Descriçaõ muito grande', False
     
     if len(descricao) != 0:
@@ -68,7 +73,7 @@ def checkFornecedor(fornecedor):
 def caracteres(caracteres):
     if len(caracteres) == 0: return 'Nenhuma caracteristicas foi adicionada', False
     if len(caracteres) < 5: return 'Adicione pelo menos uma caracteristica do produto', False
-    if len(caracteres) > 5 and len(caracteres) < 255: return True
+    if len(caracteres) > 5 and len(caracteres) < 500: return True
     
     return False
 

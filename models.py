@@ -6,6 +6,8 @@ def connectDb():
     cursor = con.cursor()
 
 def createTable():
+    con = sqlite3.connect('banco')
+    cursor = con.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS produto(
             prod_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -19,7 +21,7 @@ def createTable():
             prod_caracter TEXT NOT NULL,
             prod_url TEXT
             )''')
-    con.commit()
+    cursor.commit()
     con.close()
     
 def updateDados(nome,categoria,desc,preco,qtd,data_fab,data_ven,caracteres,url):
@@ -31,9 +33,6 @@ def updateDados(nome,categoria,desc,preco,qtd,data_fab,data_ven,caracteres,url):
         prod_data_fabricacao, prod_data_vencimento, prod_caracter, prod_url)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'''
     cursor.execute(sql, (nome, categoria, desc, preco, qtd, data_fab, data_ven, caracteres, url))
-    con.commit()
-    cursor.close()
-
     con.commit()
     cursor.close()
     
@@ -55,7 +54,14 @@ def ReadDados():
     con.close()
     
     # Converter os dados
-    listaDeProduto = [{"imagem_url": linha[0], "titulo": linha[1],"categoria": linha[2] ,"descricao": linha[3], "preco": linha[4]}  for linha in dados]
+    listaDeProduto = [{
+        "imagem_url": linha[0],
+        "titulo": linha[1],
+        "categoria": linha[2] ,
+        "descricao": linha[3],
+        "preco": linha[4],
+        "imagem_url": linha[9]
+        }  for linha in dados]
     return listaDeProduto
         
     
@@ -90,8 +96,10 @@ def deleteProduto():
         if campo == 3:
             sql   = f"DELETE FROM produto WHERE prod_qtd_estoque = {id} " 
             print(f"Produto nome: {id} foi deletado com sucesso")   
+            
+        if campo == 0:
+            sql = f"DELETE FROM produto"    
+            cursor.execute(sql)
+            con.commit()
+            print(f"Todos os produtos foram deletados do banco de dados. Obrigado")
      
-             
-updateDados('Smartphone', 'Tecnologia', 'Celular top de linha', 2999.99, 10, '2024-01-01', '2026-01-01', '128GB, Tela AMOLED', 'https://exemplo.com')     
-ReadDados()
-# deleteProduto()

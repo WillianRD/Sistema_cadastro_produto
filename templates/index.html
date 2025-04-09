@@ -32,6 +32,10 @@
         background-color: #28a745;
         border: none;
       }
+      .btn-btn-primary {
+        width: 100%;
+        background-color: rgb(0, 153, 255);
+      }
       .btn-primary:hover {
         background-color: #218838;
       }
@@ -54,15 +58,14 @@
             <option selected disabled>Selecione uma opção</option>
             <option value="Alimentos">Alimentos</option>
             <option value="Bebidas">Bebidas</option>
-            <option value="Roupas">Roupas</option>
-            <option value="Tecnologia">Tecnologia</option>
-            <option value="Saúde">Saúde</option>
+            <option value="Tecnologia">Tecnológia</option>
+            <option value="Saude">Saúde</option>
             <option value="Eletrodomestico">Eletrodomestico</option>
-            <option value="Casa e decoração">Casa e decoração</option>
-            <option value="Decoração">Decoração</option>
+            <option value="Casa&Decoração">Casa & Decoração</option>
+            <option value="Decoracao">Decoração</option>
             <option value="Brinquedo">Brinquedo</option>
-            <option value="Produto Fisico">Produto Fisico</option>
-            <option value="Produto Digital">Produto Digital</option>
+            <option value="ProdutoFisico">Produto Fisico</option>
+            <option value="ProdutoDigital">Produto Digital</option>
           </select>
         </div>
 
@@ -73,7 +76,7 @@
 
         <div class="mb-3">
           <label class="form-label">Preço</label>
-          <input name="preco" type="number" step="0.01" class="form-control" placeholder="Preço">
+          <input name="preco" type="text" step="0.01" class="form-control" placeholder="Preço">
         </div>
 
         <div class="mb-3">
@@ -107,9 +110,16 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Enviar Dados</button>
+          <a class="btn btn-btn-primary" href="http://127.0.0.1:5000/produtos" >Produtos</a>
+
+          <script>
+            funcaoAlert()
+            {
+              alert('Item adicionado com sucesso')
+            }
+          </script>
       </form>
     </div>
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
