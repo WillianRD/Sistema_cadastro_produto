@@ -1,9 +1,9 @@
 import requests
 
 from flask import Flask, render_template, request, url_for # type: ignore
-from validarProduto import checkSize,checkCategory
-from validarProduto import checkPrice, checkDesc, checkSizeEstoque,checkFornecedor
-from validarProduto import caracteres, url
+from validar_produto.validarProduto import checkSize,checkCategory
+from validar_produto.validarProduto import checkPrice, checkDesc, checkSizeEstoque,checkFornecedor
+from validar_produto.validarProduto import caracteres, url
 from models import updateDados, ReadDados
 
 app = Flask(__name__)
@@ -24,7 +24,7 @@ def index():
         updateDados(produto,categoria,preco,descricao,qtd,fabricacao,vencimento,caracteristicas,url_link_page)
     return render_template('index.html')
 
-@app.route("/produtos", methods=['GET'])
+@app.route("/produtos", methods=['GET', 'POST'])
 
 def get_produto():
     listaDeProdutos = ReadDados()
@@ -34,4 +34,6 @@ def get_produto():
 @app.route("/produtos/delete", methods=['GET','DELETE'])
 def delete_produto():
     return '<h1>Essa rota vai servir para deletar dados... Em produção </h1>'
-
+    
+if __name__ == '__main__':
+    app.run(debug=True)
