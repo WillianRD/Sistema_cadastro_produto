@@ -8,7 +8,11 @@ from models import updateDados, ReadDados
 
 app = Flask(__name__)
 
-@app.route("/", methods=['POST','GET'])
+@app.route("/", methods=['GET'])
+def main():
+    return 'Página principal --- Em produção'
+
+@app.route("/produtos/insert", methods=['POST','GET'])
 def index():
     if request.method == 'POST':
         produto = request.form['produto']
@@ -21,19 +25,21 @@ def index():
         vencimento= request.form['vencimento']
         caracteristicas= request.form['caracteristicas']
         url_link_page = request.form['url_link_page']
-        updateDados(produto,categoria,preco,descricao,qtd,fabricacao,vencimento,caracteristicas,url_link_page)
+        updateDados(produto,categoria,preco,descricao,qtd,fornecedor,fabricacao,vencimento,caracteristicas,url_link_page)
     return render_template('index.html')
 
-@app.route("/produtos", methods=['GET', 'POST'])
-
+@app.route("/produtos/read", methods=['GET', 'POST'])
 def get_produto():
     listaDeProdutos = ReadDados()
-    
     return render_template('produto.html',lista=listaDeProdutos)
 
 @app.route("/produtos/delete", methods=['GET','DELETE'])
 def delete_produto():
-    return '<h1>Essa rota vai servir para deletar dados... Em produção </h1>'
+    return '<h1>Essa rota vai servir para deletar dados --- Em produção </h1>'
     
+@app.route('/produtos/update', methods=['GET']) 
+def update():
+    return 'Atualizar dados --- Em produção'   
+
 if __name__ == '__main__':
     app.run(debug=True)
