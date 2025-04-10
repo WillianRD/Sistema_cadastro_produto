@@ -31,7 +31,7 @@ def index():
 @app.route("/produtos/read", methods=['GET', 'POST'])
 def get_produto():
     listaDeProdutos = ReadDados()
-    return render_template('produto.html',lista=listaDeProdutos)
+    return render_template('form_add.html',lista=listaDeProdutos)
 
 @app.route("/produtos/delete", methods=['GET','DELETE'])
 def delete_produto():
