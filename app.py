@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from Controller import connect_data, read_data, update_data, delete
+from Controller import connect_data, read_data, insert_data, delete_data
 
 
 # Chama a instancia do Flask
@@ -19,7 +19,7 @@ def index():
         vencimento= request.form['vencimento']
         caracteristicas= request.form['caracteristicas']
         url_link_page = request.form['urllink']
-        update(produto,categoria,descricao,preco,qtd,fabricacao,vencimento,caracteristicas,url_link_page)
+        insert_data(produto,categoria,descricao,preco,qtd,fabricacao,vencimento,caracteristicas,url_link_page)
     return render_template('index.html')
 
 @app.route("/produtos/read", methods=['GET'])

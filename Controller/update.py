@@ -1,6 +1,6 @@
 import sqlite3
 
-def update_data(nome,categoria,desc,preco,qtd,data_fab,data_ven,caracteres,url):
+def insert_data(nome,categoria,desc,preco,qtd,data_fab,data_ven,caracteres,url):
     con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     
