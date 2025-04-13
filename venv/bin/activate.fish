@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV '/home/will/Documentos/Projetos Grandes/Sistema de Cadastro -- Flask/venv'
+set -gx VIRTUAL_ENV '/home/will/Documentos/BigProjects/Sistema de Cadastro -- Flask/Sistema_cadastro_produto/venv'
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
