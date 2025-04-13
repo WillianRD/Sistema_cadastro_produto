@@ -1,15 +1,13 @@
-import requests
-
 from flask import Flask, render_template, request, url_for # type: ignore
 from validar_produto.validarProduto import checkSize,checkCategory
 from validar_produto.validarProduto import checkPrice, checkDesc, checkSizeEstoque,checkFornecedor
 from validar_produto.validarProduto import caracteres, url
 from models import updateDados, ReadDados
-
 app = Flask(__name__)
 
 @app.route("/", methods=['GET'])
 def main():
+    index()
     return 'Página principal --- Em produção'
 
 @app.route("/produtos/insert", methods=['POST','GET'])

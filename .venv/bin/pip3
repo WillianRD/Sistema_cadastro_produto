@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/will/Documentos/BigProjects/Sistema de Cadastro -- Flask/.venv/bin/python" "$0" "$@"
-' '''
+#!/home/will/Documentos/BigProjects/Flask/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

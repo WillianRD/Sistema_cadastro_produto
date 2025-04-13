@@ -2,7 +2,7 @@ import sqlite3
 from sqlite3 import Error
     
 def connectDb():
-    con = sqlite3.connect('banco-para-testes.db')
+    con = sqlite3.connect('banco')
     cursor = con.cursor()
 
 def createTable():
@@ -59,8 +59,7 @@ def ReadDados():
         "titulo": linha[1],
         "categoria": linha[2] ,
         "descricao": linha[3],
-        "preco": linha[4],
-        "imagem_url": linha[9]
+        "preco": linha[4]
         }  for linha in dados]
     return listaDeProduto
         
@@ -102,4 +101,7 @@ def deleteProduto():
             cursor.execute(sql)
             con.commit()
             print(f"Todos os produtos foram deletados do banco de dados. Obrigado")
+     
+# createTable() 
+# connectDb()
      
