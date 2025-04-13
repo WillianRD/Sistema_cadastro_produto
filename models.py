@@ -2,14 +2,16 @@ import sqlite3
 from sqlite3 import Error
     
 def connectDb():
-    con = sqlite3.connect('banco')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
+    cursor.close()
+    return 'Banco criado', True
 
 def createTable():
-    con = sqlite3.connect('banco')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS produto(
+        CREATE TABLE IF NOT EXISTS produtos(
             prod_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
             prod_name TEXT NOT NULL,
             prod_categoria TEXT,
@@ -21,14 +23,14 @@ def createTable():
             prod_caracter TEXT NOT NULL,
             prod_url TEXT
             )''')
-    cursor.commit()
-    con.close()
+    con.commit()
+    cursor.close()
     
 def updateDados(nome,categoria,desc,preco,qtd,data_fab,data_ven,caracteres,url):
-    con = sqlite3.connect('banco-para-testes.db')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     
-    sql = '''INSERT INTO produto
+    sql = '''INSERT INTO produtos
         (prod_name, prod_categoria, prod_descricao, prod_preco, prod_qtd_estoque, 
         prod_data_fabricacao, prod_data_vencimento, prod_caracter, prod_url)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'''
@@ -45,17 +47,17 @@ def ReadDados():
     # for exibir in cursor.fetchall():
     #     print(exibir)
         
-    con = sqlite3.connect('banco-para-testes.db')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     
-    cursor.execute('SELECT * FROM produto')
+    cursor.execute('SELECT * FROM produtos')
     dados = cursor.fetchall()
     print(dados)
     con.close()
     
     # Converter os dados
     listaDeProduto = [{
-        "imagem_url": linha[0],
+        "url_p": linha[8],
         "titulo": linha[1],
         "categoria": linha[2] ,
         "descricao": linha[3],
@@ -69,7 +71,7 @@ def ReadDados():
         
 
 def deleteProduto():
-    con = sqlite3.connect('banco-para-testes.db')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     
     while(True):    
@@ -102,6 +104,7 @@ def deleteProduto():
             con.commit()
             print(f"Todos os produtos foram deletados do banco de dados. Obrigado")
      
-# createTable() 
 # connectDb()
-     
+# createTable() 
+# updateDados("Celular Iphone 16 Pro Max 256GB", "Tecnologia","Celular Apple",7.200,100,"20/02/2025","20/02/2026","Celular com 1 capa\nCarregador","https://a-static.mlcdn.com.br/1500x1500/apple-iphone-15-128gb-preto-61-48mp-ios-5g/magazineluiza/238035600/716d868f4d404bfb6f8189c688a8c74f.jpg")
+ReadDados()

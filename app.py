@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET'])
 def main():
-    index()
     return 'Página principal --- Em produção'
 
 @app.route("/produtos/insert", methods=['POST','GET'])
@@ -15,21 +14,21 @@ def index():
     if request.method == 'POST':
         produto = request.form['produto']
         categoria = request.form['categoria']
-        preco = request.form['preco']
+        preco = float( request.form['preco'])
         descricao = request.form['descricao']
-        qtd = request.form['estoque']
+        qtd = int(request.form['estoque'])
         fornecedor= request.form['fornecedor']
         fabricacao= request.form['fabricacao']
         vencimento= request.form['vencimento']
         caracteristicas= request.form['caracteristicas']
-        url_link_page = request.form['url_link_page']
-        updateDados(produto,categoria,preco,descricao,qtd,fornecedor,fabricacao,vencimento,caracteristicas,url_link_page)
+        link_image = request.form['page_url']
+        updateDados(produto,categoria,descricao,preco,qtd,fabricacao,vencimento,caracteristicas,link_image)
     return render_template('index.html')
 
 @app.route("/produtos/read", methods=['GET', 'POST'])
 def get_produto():
     listaDeProdutos = ReadDados()
-    return render_template('produto.html',lista=listaDeProdutos)
+    return render_template('form_add.html',lista=listaDeProdutos)
 
 @app.route("/produtos/delete", methods=['GET','DELETE'])
 def delete_produto():
