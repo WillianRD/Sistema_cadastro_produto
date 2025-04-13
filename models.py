@@ -1,5 +1,4 @@
 import sqlite3
-from sqlite3 import Error
     
 def connectDb():
     con = sqlite3.connect('banco.db')
@@ -39,13 +38,6 @@ def updateDados(nome,categoria,desc,preco,qtd,data_fab,data_ven,caracteres,url):
     cursor.close()
     
 def ReadDados():
-    
-    # con = sqlite3.connect('sql.db')
-    # cursor = con.cursor()
-    
-    # cursor.execute('SELECT * FROM produto')
-    # for exibir in cursor.fetchall():
-    #     print(exibir)
         
     con = sqlite3.connect('banco.db')
     cursor = con.cursor()
@@ -57,54 +49,16 @@ def ReadDados():
     
     # Converter os dados
     listaDeProduto = [{
-        "url_p": linha[8],
-        "titulo": linha[1],
-        "categoria": linha[2] ,
-        "descricao": linha[3],
-        "preco": linha[4]
-        }  for linha in dados]
+        "titulo": linha[1], # Na posição 1 do banco de dados
+        "categoria": linha[2] , # Na posição 2 do banco de dados
+        "descricao": linha[3], # Na posição 3 do banco de dados
+        "preco": linha[4], # Na posição 4 do banco de dados
+        "imagem_url": linha[9] # Na posição 9 do banco de dados
+        } for linha in dados]
     return listaDeProduto
-        
-    
-    for exibir in cursor.fetchall():
-        print(exibir)
-        
 
-def deleteProduto():
-    con = sqlite3.connect('banco.db')
-    cursor = con.cursor()
-    
-    while(True):    
-        print('Você deseja deletar qual campo?\n1.ID:\n2.Nome do Produto\n3.Quantidade do Estoque')
-    
-        campo  =int(input('Digite um digito para deletar um campo'))
-    
-        print("Mostrando todos os dados da tabela Produto: ",ReadDados())
-        id = int(input('Digite o ID do campo: \n'))
-        
-        if campo == 1:
-            sql = '''DELETE FROM produto WHERE prod_id = ? {id}'''
-            cursor.execute(sql)
-            con.commit()
-            print(f"ID {id} foi deletado com sucesso")
-        
-        if campo == 2:
-            sql = f"DELETE FROM produto WHERE prod_name = {id}"
-            cursor.execute(sql)
-            print(f"Produto nome: {id} foi deletado com sucesso")  
-       
-        
-        if campo == 3:
-            sql   = f"DELETE FROM produto WHERE prod_qtd_estoque = {id} " 
-            print(f"Produto nome: {id} foi deletado com sucesso")   
-            
-        if campo == 0:
-            sql = f"DELETE FROM produto"    
-            cursor.execute(sql)
-            con.commit()
-            print(f"Todos os produtos foram deletados do banco de dados. Obrigado")
      
 # connectDb()
 # createTable() 
-# updateDados("Celular Iphone 16 Pro Max 256GB", "Tecnologia","Celular Apple",7.200,100,"20/02/2025","20/02/2026","Celular com 1 capa\nCarregador","https://a-static.mlcdn.com.br/1500x1500/apple-iphone-15-128gb-preto-61-48mp-ios-5g/magazineluiza/238035600/716d868f4d404bfb6f8189c688a8c74f.jpg")
-ReadDados()
+updateDados("Iphone 16 Pro Max 256GB", "Tecnologia","Celular Apple",7.200,100,"20/02/2025","20/02/2026","Celular com 1 capa\nCarregador","https://a-static.mlcdn.com.br/1500x1500/apple-iphone-15-128gb-preto-61-48mp-ios-5g/magazineluiza/238035600/716d868f4d404bfb6f8189c688a8c74f.jpg")
+# ReadDados()
