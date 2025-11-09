@@ -87,10 +87,10 @@
       
       <div class="mb-3">
         <label class="form-label">N° Pedido</label>
-        <input name="name" type="text" class="form-control" placeholder="Infome o N° do seu Pedido" required>
+        <input name="idpedido" type="text" class="form-control" placeholder="Infome o N° do seu Pedido" required>
       </div>
 
-      <div class="mb-3">
+<div class="mb-3">
   <label class="form-label">Telefone</label>
   <input 
     name="telefone" 
@@ -99,27 +99,48 @@
     placeholder="(00) 00000-0000" 
     required
     id="telefone"
+    maxlength="15"
   >
 </div>
 
 <script>
   const telefoneInput = document.getElementById('telefone');
 
-  telefoneInput.addEventListener('input', function (e) {
-    let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é número
-    if (value.length > 11) value = value.slice(0, 11); // Limita a 11 dígitos
+  telefoneInput.addEventListener('input', (e) => {
+    let value = e.target.value;
+    
+    // remove tudo que não é número
+    value = value.replace(/\D/g, '');
 
-    if (value.length > 6) {
-      value = `(${value.slice(0,2)}) ${value.slice(2,7)}-${value.slice(7,11)}`;
+    // limita a 11 dígitos
+    if (value.length > 11) value = value.slice(0, 11);
+
+    // aplica a máscara conforme o tamanho
+    if (value.length > 10) {
+      value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+    } else if (value.length > 6) {
+      value = value.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
     } else if (value.length > 2) {
-      value = `(${value.slice(0,2)}) ${value.slice(2)}`;
-    } else if (value.length > 0) {
-      value = `(${value}`;
+      value = value.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+    } else {
+      value = value.replace(/^(\d*)/, '($1');
     }
 
     e.target.value = value;
   });
+
+  // impede envio se o número estiver incompleto
+  document.querySelector('form')?.addEventListener('submit', (e) => {
+    const num = telefoneInput.value.replace(/\D/g, '');
+    if (num.length < 10) {
+      alert('Por favor, digite um telefone válido com DDD.');
+      e.preventDefault();
+    }
+  });
 </script>
+
+
+
 
       <!--<div class="mb-3">
           <label class="form-label">Quantidade no Estoque</label>

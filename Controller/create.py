@@ -1,7 +1,7 @@
 import sqlite3
 
 def create_table():
-    con = sqlite3.connect('teste.db')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS clientes (
@@ -9,6 +9,7 @@ def create_table():
         name TEXT NOT NULL,
         marketplace TEXT NOT NULL,
         produto TEXT NOT NULL,
+        npedido TEXT NOT NULL,
         telefone TEXT NOT NULL,
         loja TEXT NOT NULL
     )

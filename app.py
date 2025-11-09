@@ -11,10 +11,11 @@ def index():
         nomeCliente = request.form['name']
         tipoDeMarketplace = request.form['categoria']
         produto = request.form['produto']
+        npedido = request.form['idpedido']
         telefone = request.form['telefone']
         fornecedorLoja = request.form['loja']
 
-        insert_data(nomeCliente, tipoDeMarketplace, produto, telefone, fornecedorLoja)
+        insert_data(nomeCliente, tipoDeMarketplace, produto, npedido, telefone, fornecedorLoja)
 
         # Redireciona e passa o nome do cliente como parâmetro na URL
         return redirect(url_for('sucesso', nome=nomeCliente))
