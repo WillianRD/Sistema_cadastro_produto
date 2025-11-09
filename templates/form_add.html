@@ -8,18 +8,16 @@
   </head>
   <body>
     <div class="container text-center mt-4">
-      <h1>Gerenciamento de produto</h1>
+      <h1>Gerenciamento de Clientes</h1>
       <div class="row g-4">
         {% for i in lista %}
         <div class="col-md-4">
           <div class="card" style="width: 18rem; margin: auto;">
-            <img src= "{{i.imagem_url}}" class="card-img-top" alt="Imagem do produto">
             <div class="card-body">
-              <h5 class="card-title"> Produto {{ i.titulo }}</h5>
-              <p class="card-text">Categoria: {{ i.categoria }}</p>
-              <p class="card-text">Descrição {{ i.descricao }}</p>
-              <p class="card-text">Preço {{ i.preco }}</p>
-              <a href="#" class="btn btn-primary">Comprar</a>
+              <h5 class="card-title"> Cliente {{ i.name }}</h5>
+              <p class="card-text">Tipo de Marketplace: {{ i.categoria }}</p>
+              <p class="card-text">Produto {{ i.produto }}</p>
+              <p class="card-text">Celular {{ i.cellphone }}</p>
             </div>
           </div>
         </div>

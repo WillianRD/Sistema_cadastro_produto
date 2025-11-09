@@ -1,31 +1,32 @@
-from flask import Flask, render_template, request
-from Controller import connect_data, read_data, insert_data, delete_data
+from flask import Flask, render_template, request, redirect, url_for
+from Controller import insert_data
+from models import createTable
 
-
-# Chama a instancia do Flask
 app = Flask(__name__)
+createTable()
 
-# Rota criada
 @app.route("/", methods=['POST','GET'])
 def index():
     if request.method == 'POST':
-        produto = request.form['produto'] # Variavel produto recebe requisição do form do atributo produto do index.html
-        categoria = request.form['categoria']
-        preco = float( request.form['preco'])
-        descricao = request.form['descricao']
-        qtd = int(request.form['estoque'])
-        fornecedor= request.form['fornecedor']
-        fabricacao= request.form['fabricacao']
-        vencimento= request.form['vencimento']
-        caracteristicas= request.form['caracteristicas']
-        url_link_page = request.form['urllink']
-        insert_data(produto,categoria,descricao,preco,qtd,fabricacao,vencimento,caracteristicas,url_link_page)
+        nomeCliente = request.form['name']
+        tipoDeMarketplace = request.form['categoria']
+        produto = request.form['produto']
+        telefone = request.form['telefone']
+        fornecedorLoja = request.form['loja']
+
+        insert_data(nomeCliente, tipoDeMarketplace, produto, telefone, fornecedorLoja)
+
+        # Redireciona e passa o nome do cliente como parâmetro na URL
+        return redirect(url_for('sucesso', nome=nomeCliente))
+
     return render_template('index.html')
 
-@app.route("/produtos/read", methods=['GET'])
-def get_produto():
-    listaDeProdutos = ReadDados()
-    return render_template('form_add.html',lista=listaDeProdutos)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route("/sucesso")
+def sucesso():
+    nome = request.args.get('nome', '')  # pega o nome do cliente passado na URL
+    return render_template("sucesso.html", nome=nome)
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=True)

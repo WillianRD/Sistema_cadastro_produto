@@ -2,20 +2,20 @@ import sqlite3
 
 def read_data():
         
-    con = sqlite3.connect('banco.db')
+    con = sqlite3.connect('teste.db')
     cursor = con.cursor()
     
-    cursor.execute('SELECT * FROM produtos')
+    cursor.execute('SELECT * FROM clientes')
     dados = cursor.fetchall()
     print(dados)
     con.close()
     
     # Converter os dados
     listaDeProduto = [{
-        "titulo": linha[1], # Na posição 1 do banco de dados
-        "categoria": linha[2] , # Na posição 2 do banco de dados
-        "descricao": linha[3], # Na posição 3 do banco de dados
-        "preco": linha[4], # Na posição 4 do banco de dados
-        "imagem_url": linha[9] # Na posição 9 do banco de dados
+        "nome": linha[1], 
+        "marketplce": linha[2] ,
+        "produto": linha[3],
+        "telefone": linha[4],
+        "loja": linha[5]
         } for linha in dados]
     return listaDeProduto
